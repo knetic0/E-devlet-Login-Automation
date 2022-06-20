@@ -95,7 +95,7 @@ class Main:
             if self.tuple == self.studentsList[i]:
                 
                 self.url = "https://giris.turkiye.gov.tr/Giris/gir"
-                self.tarayici = webdriver.Chrome(executable_path="/usr/local/share/chromedriver");
+                self.tarayici = webdriver.Chrome(executable_path="chromedriver");
                 self.tarayici.get(self.url)
         
                 self.tarayici.find_element_by_id("tridField").send_keys(str(self.userName))
