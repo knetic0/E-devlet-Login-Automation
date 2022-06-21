@@ -103,6 +103,8 @@ class Main:
                 self.tarayici.find_element_by_id("egpField").send_keys(str(self.password))
                 # click login button
                 self.tarayici.find_element_by_class_name("submitButton").click()
+                
+                break
             
             elif i == (len(self.studentsList) - 1) and self.tuple != self.studentsList[i]:
                 showerror("Error!", "No such user found!")
