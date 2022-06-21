@@ -104,7 +104,7 @@ class Main:
                 # click login button
                 self.tarayici.find_element_by_class_name("submitButton").click()
             
-            else:
+            elif i == (len(self.studentsList) - 1) and self.tuple != self.studentsList[i]:
                 showerror("Error!", "No such user found!")
                 
 
