@@ -87,6 +87,8 @@ class Main:
         self.dataSet = self.dbcursor.fetchall()
 
         self.studentsList = []
+        
+        self.studentsList.append("")
 
         for data in self.dataSet:
             self.studentsList.append(data)
