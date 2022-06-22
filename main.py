@@ -109,7 +109,8 @@ class Main:
             elif i == (len(self.studentsList) - 1) and self.tuple != self.studentsList[i]:
                 showerror("Error!", "No such user found!")
                 
-
+        self.studentsList.clear()
+        
         self.db.close()
 
     def Register(self):
