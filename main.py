@@ -72,48 +72,51 @@ class Main:
 
 
     def Login(self):
-        self.userName = self.emailEntry.get()
-        self.password = self.passwordEntry.get()
+        try:
+            self.userName = self.emailEntry.get()
+            self.password = self.passwordEntry.get()
 
-        self.userName = int(self.userName)
+            self.userName = int(self.userName)
 
-        self.tuple = (self.userName, self.password)
+            self.tuple = (self.userName, self.password)
 
-        self.db = sqlite3.connect("database.db")
-        self.dbcursor = self.db.cursor()
+            self.db = sqlite3.connect("database.db")
+            self.dbcursor = self.db.cursor()
 
-        self.dbcursor.execute("SELECT * FROM students")
+            self.dbcursor.execute("SELECT * FROM students")
 
-        self.dataSet = self.dbcursor.fetchall()
+            self.dataSet = self.dbcursor.fetchall()
 
-        self.studentsList = []
-        
-        self.studentsList.append("")
+            self.studentsList = []
 
-        for data in self.dataSet:
-            self.studentsList.append(data)
+            self.studentsList.append("")
 
-        for i in range(len(self.studentsList)):
-            if self.tuple == self.studentsList[i]:
-                
-                self.url = "https://giris.turkiye.gov.tr/Giris/gir"
-                self.tarayici = webdriver.Chrome(executable_path="chromedriver");
-                self.tarayici.get(self.url)
-        
-                self.tarayici.find_element_by_id("tridField").send_keys(str(self.userName))
-                # find password input field and insert password as well
-                self.tarayici.find_element_by_id("egpField").send_keys(str(self.password))
-                # click login button
-                self.tarayici.find_element_by_class_name("submitButton").click()
-                
-                break
-            
-            elif i == (len(self.studentsList) - 1) and self.tuple != self.studentsList[i]:
-                showerror("Error!", "No such user found!")
-                
-        self.studentsList.clear()
-        
-        self.db.close()
+            for data in self.dataSet:
+                self.studentsList.append(data)
+
+            for i in range(len(self.studentsList)):
+                if self.tuple == self.studentsList[i]:
+
+                    self.url = "https://giris.turkiye.gov.tr/Giris/gir"
+                    self.tarayici = webdriver.Chrome(executable_path="chromedriver");
+                    self.tarayici.get(self.url)
+
+                    self.tarayici.find_element_by_id("tridField").send_keys(str(self.userName))
+                    # find password input field and insert password as well
+                    self.tarayici.find_element_by_id("egpField").send_keys(str(self.password))
+                    # click login button
+                    self.tarayici.find_element_by_class_name("submitButton").click()
+
+                    break
+
+                elif i == (len(self.studentsList) - 1) and self.tuple != self.studentsList[i]:
+                    showerror("Error!", "No such user found!")
+
+            self.studentsList.clear()
+
+            self.db.close()
+        except:
+            showinfo("Error!", "Please Enter All Requiered Entry's!")
 
     def Register(self):
 
